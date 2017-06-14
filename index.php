@@ -96,7 +96,7 @@ EOF;
 			); 
 		$url_stats_forum[]  = array(
 				'<a href="stats.php?annee='.$annee.'&typestat=nb_forum_annonces" target="_BLANK">'.  get_string('nb_forum_annonces', 'local_up1reportepiufr').'</a>',
-				'<a href="stats_csv.php?annee='.$annee.'&typestat=nb_forum_annonces" TARGET="_BLANK"><img src="img/csv.png" width="32"></a>',
+				'<a href="stats_ufr_csv.php?annee='.$annee.'&typestat=nb_forum_annonces" TARGET="_BLANK"><img src="img/csv.png" width="32"></a>',
 				'<a href="stats_diplome_csv.php?annee='.$annee.'&typestat=nb_forum_annonces" TARGET="_BLANK"><img src="img/csv.png" width="32"></a>'
 			); 
 		$url_stats_forum[]  = array(
