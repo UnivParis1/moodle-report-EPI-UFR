@@ -470,11 +470,11 @@ function getNbDevoirsRemis($id) {
 
 function getNbVues($id) {
 	global $DB;
-	$select_nb_vues = "	SELECT count(id) as nb
-   	 									FROM {log}
-   	 									WHERE course = ?
-   	 									AND module = 'course'
-   	 									AND action ='view'";
+        $select_nb_vues = "     SELECT count(id) as nb
+                                                                                FROM {logstore_standard_log}
+                                                                                WHERE courseid = ?
+                                                                                AND contextlevel = 50
+                                                                                AND action ='viewed'";
    	 $obj=  $DB->get_record_sql($select_nb_vues,array($id));
    	 if (!empty($obj->nb))  return $obj->nb;
    	 return 0;
