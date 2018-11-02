@@ -17,13 +17,12 @@ $PAGE->requires->css(new moodle_url('/local/up1reportepiufr/css/up1reportepiufr.
 /**
  * vérification que l'utilisateur est un administrateur
  */
-
-if (is_siteadmin()) {
+if (is_userauthorized($USER->id) || is_siteadmin()) {
 	$annee = 0;
 	if (isset($_REQUEST['annee'])) $annee = $_REQUEST['annee'];
 	
 	$PAGE->set_pagelayout('report');
-	admin_externalpage_setup('local_up1reportepiufr', '', null, '', array('pagelayout'=>'report'));
+	if (is_siteadmin()) admin_externalpage_setup('local_up1reportepiufr', '', null, '', array('pagelayout'=>'report'));
 	
 	if ($annee==0) {
 		$PAGE->set_heading(get_string('heading', 'local_up1reportepiufr'));
@@ -56,6 +55,7 @@ $form = <<< EOF
 <form action="index.php" method="GET" >
 	<h3> $libelle_choose_cat $select<input type="submit" value="$libelle_valider"></h3>
 </form>
+<span style="color:red"><a href="index2.php" style="color:red">Evolution des usages par périodes</a></span>
 EOF;
 	echo $form; // insertion du formulaire dans la page
 	
@@ -83,6 +83,16 @@ EOF;
 				'<a href="stats.php?annee='.$annee.'&typestat=nb_etudiants_jamais_connectes" target="_BLANK">'.  get_string('nb_etudiants_jamais_connectes', 'local_up1reportepiufr').'</a>',
 				'<a href="stats_ufr_csv.php?annee='.$annee.'&typestat=nb_etudiants_jamais_connectes" target="_BLANK"><img src="img/csv.png" width="32"></a>',
 				'<a href="stats_diplome_csv.php?annee='.$annee.'&typestat=nb_etudiants_jamais_connectes" target="_BLANK"><img src="img/csv.png" width="32"></a>'
+			); 
+		$url_stats_epis_users[]  = array(
+				'<a href="stats.php?annee='.$annee.'&typestat=nb_etudiants_EPIarchive" target="_BLANK" target="_BLANK">'.  get_string('nb_etudiants_EPIarchive', 'local_up1reportepiufr').'</a>',
+				'<a href="stats_ufr_csv.php?annee='.$annee.'&typestat=nb_etudiants_EPIarchive" target="_BLANK"><img src="img/csv.png" width="32"></a>',
+				'<a href="stats_diplome_csv.php?annee='.$annee.'&typestat=nb_etudiants_EPIarchive" target="_BLANK"><img src="img/csv.png" width="32"></a>'
+			); 
+		$url_stats_epis_users[]  = array(
+				'<a href="stats.php?annee='.$annee.'&typestat=nb_etudiants_EPIarchive_jamais_connectes" target="_BLANK">'.  get_string('nb_etudiants_EPIarchive_jamais_connectes', 'local_up1reportepiufr').'</a>',
+				'<a href="stats_ufr_csv.php?annee='.$annee.'&typestat=nb_etudiants_EPIarchive_jamais_connectes" target="_BLANK"><img src="img/csv.png" width="32"></a>',
+				'<a href="stats_diplome_csv.php?annee='.$annee.'&typestat=nb_etudiants_EPIarchive_jamais_connectes" target="_BLANK"><img src="img/csv.png" width="32"></a>'
 			); 
 		$url_stats_activity[]  = array(
 				'<a href="stats.php?annee='.$annee.'&typestat=nb_activites_devoir" target="_BLANK">'.  get_string('nb_activites_devoir', 'local_up1reportepiufr').'</a>',

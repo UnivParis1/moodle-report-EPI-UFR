@@ -6,7 +6,7 @@ $SELECT = "	SELECT count(distinct tra.userid)  AS nb
 	        INNER JOIN {role_assignments} AS tra ON tra.contextid = ctx.id 
 	        INNER JOIN {course_categories} AS CC ON c.category = CC.id
 	        INNER JOIN {user} AS U ON U.id = tra.userid
-	        WHERE tra.roleid = 5
+	        WHERE tra.roleid = 26
 	        AND (U.email LIKE '%malix.univ-paris1.fr' or U.email like '%etu.univ-paris1.fr') 
 	        AND  ( CC.path LIKE ? OR CC.path LIKE ? )";
 $requete_etab_dedoublonnee = true;

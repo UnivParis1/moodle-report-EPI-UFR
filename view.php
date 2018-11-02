@@ -7,7 +7,9 @@ require_login();
 
 ini_set('max_execution_time', 600);
 ini_set('memory_limit', '2048M');
-
+@ini_set('display_errors', '1'); // NOT FOR PRODUCTION SERVERS!
+$CFG->debug = 38911;  // DEBUG_DEVELOPER // NOT FOR PRODUCTION SERVERS!
+$CFG->debugdisplay = true;   // NOT FOR PRODUCTION SERVERS!
 $idcategorie=0;
 $url = new moodle_url('/local/up1reportepiufr/index.php');
 $PAGE->set_url($url);
@@ -24,7 +26,7 @@ $PAGE->requires->css(new moodle_url('/local/up1reportepiufr/css/up1reportepiufr.
  * vérification que l'utilisateur est un administrateur
  */
 
-if (is_siteadmin()) {
+if (is_siteadmin() || is_userauthorized($USER->id)) {
 	$annee = 0;
 	$only_one_editing_teacher = 0;
 	$more_than_one_editing_teacher = 0;
@@ -180,6 +182,7 @@ if (is_siteadmin()) {
 				get_string('col11','local_up1reportepiufr'),
  				get_string('col26','local_up1reportepiufr'),
  				get_string('col27','local_up1reportepiufr'),
+				'Ouvert'
    	 	);
    	 	$table_infos_activites->head = array(
 				get_string('col01','local_up1reportepiufr'),
@@ -366,7 +369,8 @@ if (is_siteadmin()) {
    	 				tooltipthis($have_free_access,'col10'),	
    					tooltipthis($percent_default_section.'%','col11'),	
    					tooltipthis($nb_vues,'col26'),	
-   					tooltipthis(date('d/m/Y', $epi->timemodified).' à '.date('H:i:s', $epi->timemodified),'col27'),	
+   					tooltipthis(date('d/m/Y', $epi->timemodified).' à '.date('H:i:s', $epi->timemodified),'col27'),
+					tooltipthis(isOpen($epi->id),'ouvert')	
    	 		 );
    	 		$data2[] = array(		
    	 				'<a href='.$CFG->wwwroot.'/course/view.php?id='.$epi->id.'" target="_BLANK">'.$epi->fullname.'</a>',	
@@ -428,7 +432,6 @@ if (is_siteadmin()) {
 		$data_resume_ufr[] = array('<strong>'.get_string('col23','local_up1reportepiufr').'</strong>',$nb_activite_externe_total);
 		$data_resume_ufr[] = array('<strong>'.get_string('col24','local_up1reportepiufr').'</strong>',$nb_devoir_remis_total);
 		$data_resume_ufr[] = array('<strong>'.get_string('col26','local_up1reportepiufr').'</strong>',$nb_vues_total);
-
 
   		$table_resume_ufr->data = $data_resume_ufr;
 		$table_infos_generales->data = $data1;

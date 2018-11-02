@@ -12,7 +12,7 @@ ini_set('memory_limit', '2048M');
  */
 
 
-if (is_siteadmin()) {
+if (is_siteadmin() || is_userauthorized($USER->id)) {
 	$annee = 0;
 	$path = '';
 	if (!empty($_GET['id']))  {

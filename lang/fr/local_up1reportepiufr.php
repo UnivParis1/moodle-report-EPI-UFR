@@ -42,6 +42,8 @@ $string['nb_enseignants'] = 'Nombre d\'utilisateurs avec rôle enseignant ou ass
 $string['nb_epis'] = 'Nombre d\'espaces de cours';
 $string['nb_etudiants_jamais_connectes'] = 'Nombre d\'utilisateurs avec rôle étudiant jamais connectés';
 $string['nb_etudiants'] = 'Nombre d\' utilisateurs avec un rôle étudiant';
+$string['nb_etudiants_EPIarchive_jamais_connectes'] = 'Nombre d\'utilisateurs avec rôle "étudiant EPI archivé" qui ne se sont jamais connectés ';
+$string['nb_etudiants_EPIarchive'] = 'Nombre d\' utilisateurs avec un rôle "étudiant EPI archivé"';
 $string['nb_etudiants_cohort'] = 'Nombre d\' utilisateurs issues d\'une synchronisation de cohortes LDAP';
 $string['nb_forum_annonces'] = 'Nombre de forums des annonces (news)';
 $string['nb_forum_autres'] = 'Nombre de forums autre qu\annonces (non news)';
@@ -59,6 +61,8 @@ $string['nb_enseignants_libcol'] = 'Nombre d\'utilisateurs avec rôle enseignant
 $string['nb_epis_libcol'] = 'Nombre d\'espaces de cours';
 $string['nb_etudiants_jamais_connectes_libcol'] = 'Nombre d\'utilisateurs avec rôle étudiant jamais connectés (utilisateurs uniques)';
 $string['nb_etudiants_libcol'] = 'Nombre d\' utilisateurs avec un rôle étudiant (utilisateurs uniques)';
+$string['nb_etudiants_EPIarchive_jamais_connectes_libcol'] = 'Nombre d\'utilisateurs avec rôle étudiant utilisateurs	 EPI archivérchivé jamais connectés (utilisateurs uniques)';
+$string['nb_etudiants_EPIarchive_libcol'] = 'Nombre d\' utilisateurs avec un rôle étudiant EPI archivé (utilisateurs uniques)';
 $string['nb_etudiants_cohort_libcol'] = 'Nombre d\' utilisateurs issues d\'une synchronisation de cohortes LDAP (utilisateurs uniques)';
 $string['nb_forum_annonces_libcol'] = 'Nombre de forums des annonces (news)';
 $string['nb_forum_autres_libcol'] = 'Nombre de forums autre qu\annonces (non news)';
@@ -127,7 +131,9 @@ $string['col24'] = 'Devoirs remis';
 $string['col25'] = 'Notifications';
 $string['col26'] = 'Vues totales';
 $string['col27'] = 'Date de dernière modification';
+$string['ouvert'] = 'Ouvert';
 // message tolltip
+$string['ouvert_msg'] = 'Le cours est-il ouvert?';
 $string['col01_msg'] = 'Lien vers le cours';
 $string['col02_msg'] = 'Il s\'agit du niveau de rattachement niveau de rattachement <br />
 			(L1,L2,L3,M1,M2). Cette information est renseigné que pour <br />

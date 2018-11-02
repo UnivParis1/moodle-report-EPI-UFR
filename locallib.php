@@ -1,4 +1,9 @@
 <?php
+function is_userauthorized($id) {
+	global $CFG;
+	if (in_array($id, $CFG->observatoireuserauthorized)) return true;
+	return false;
+}
 
 function get_stats($sql, $id_licence,$id_master,$id_doctorat, $id_ufr,$name_ufr, $count = false, $csv = false, $calculautre=false) {
 	global $DB;
@@ -141,21 +146,16 @@ function Nettoyer_chaine($chaine) {
 
 function getNiveauRattachement($id) {
 	global $DB;
-	// test si le plugin local_up1_metadata est installé
-	$select_if_local_metadata_is_used = 'select id from {config_plugins} where plugin like ?';
-	$obj =  $DB->get_record_sql($select_if_local_metadata_is_used,array('local_up1_metadata'));
-	if (!empty($obj->id)) {
-		$select_niveau_ROF= "	SELECT data 
-	   	 						FROM {custom_info_data}
-	   	 						WHERE objectid = ?
-	   	 						AND fieldid = 14";
-	   	 $obj =  $DB->get_record_sql($select_niveau_ROF,array($id));
-	   	 if (!empty($obj->data)) {
-	   	 	$niveaux = explode('/',$obj->data);
-	   	 	if (!empty($niveaux[0])) return $niveaux[0];
-	   	 }
-	}
-   	return '';
+	$select_niveau_ROF= "	SELECT data 
+   	 						FROM {custom_info_data}
+   	 						WHERE objectid = ?
+   	 						AND fieldid = 14";
+   	 $obj =  $DB->get_record_sql($select_niveau_ROF,array($id));
+   	 if (!empty($obj->data)) {
+   	 	$niveaux = explode('/',$obj->data);
+   	 	if (!empty($niveaux[0])) return $niveaux[0];
+   	 }
+   	 return '';
 }
 
 function getMailResponsableEpiByIdEpi($contextlist, $cparams) {
@@ -182,6 +182,14 @@ function getMailResponsableEpiByIdEpiForCSV($contextlist, $cparams) {
    	$mail_responsable = '';
    	if (!empty($obj_responsable->mail_responsable)) $mail_responsable = $obj_responsable->mail_responsable;
    	return $mail_responsable;
+}
+
+function isOpen($id) {
+	global $DB;
+	$select_visible = " SELECT visible from {course} where id= ? ";
+	$obj =  $DB->get_record_sql($select_visible,array($id));
+        if (!empty($obj->visible)) return 'Oui';
+	return 'Non';
 }
 
 function getNbResponsableEpi($contextlist, $cparams) {
@@ -470,11 +478,11 @@ function getNbDevoirsRemis($id) {
 
 function getNbVues($id) {
 	global $DB;
-        $select_nb_vues = "     SELECT count(id) as nb
-                                                                                FROM {logstore_standard_log}
-                                                                                WHERE courseid = ?
-                                                                                AND contextlevel = 50
-                                                                                AND action ='viewed'";
+	$select_nb_vues = "	SELECT count(id) as nb
+   	 									FROM {logstore_standard_log}
+   	 									WHERE courseid = ?
+   	 									AND contextlevel = 50
+   	 									AND action ='viewed'";
    	 $obj=  $DB->get_record_sql($select_nb_vues,array($id));
    	 if (!empty($obj->nb))  return $obj->nb;
    	 return 0;
@@ -508,4 +516,29 @@ function tooltipthis($content,$identifier) {
 				</a>';
 	
 	return $return;
+}
+
+function nb_ajout_fichier_ressource($periode_debut,$periode_fin) {
+	global $DB;
+	$select = "select count(id) as nb from mdl_resource where timemodified > UNIX_TIMESTAMP('".$periode_debut."') and timemodified < UNIX_TIMESTAMP('".$periode_fin."') ";
+	$obj=  $DB->get_record_sql($select);
+         if (!empty($obj->nb))  return $obj->nb;
+         return 0;
+}
+
+
+function nb_vue_fichier_ressource($periode_debut,$periode_fin) {
+        global $DB;
+        $select = "select count(id) as nb from mdl_logstore_standard_log where component='mod_resource' and action='viewed'  and timecreated > UNIX_TIMESTAMP('".$periode_debut."') and timecreated < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $obj=  $DB->get_record_sql($select);
+         if (!empty($obj->nb))  return $obj->nb;
+         return 0;
+}
+
+function nb_course_created($periode_debut,$periode_fin) {
+        global $DB;
+        $select = "select count(id) as nb from mdl_course where timecreated > UNIX_TIMESTAMP('".$periode_debut."') and timecreated < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $obj=  $DB->get_record_sql($select);
+         if (!empty($obj->nb))  return $obj->nb;
+         return 0;
 }

@@ -7,12 +7,15 @@ require_login();
 
 ini_set('max_execution_time', 600);
 ini_set('memory_limit', '2048M');
+@ini_set('display_errors', '1'); // NOT FOR PRODUCTION SERVERS!
+$CFG->debug = 38911;  // DEBUG_DEVELOPER // NOT FOR PRODUCTION SERVERS!
+$CFG->debugdisplay = true;   // NOT FOR PRODUCTION SERVERS!
 
 /**
  * vérification que l'utilisateur est un administrateur
  */
 
-if (is_siteadmin()) {
+if (is_siteadmin() || is_userauthorized($USER->id)) {
 	$annee = isset($_GET['annee']) ? $_GET['annee'] : 0;
 	$typestat = isset($_GET['typestat']) ? $_GET['typestat'] : '';
 	if (!empty($annee)) {
@@ -70,7 +73,7 @@ if (is_siteadmin()) {
 					} else {
 						$nbtotal = $nb_licence + $nb_master + $nb_doctorat + $nb_autre;
 					}
-					$array_csv[]= array(get_string($typestat.'_libcol','local_up1reportepiufr'),$nbtotal);
+					$array_csv[]= array(get_string($typestat,'local_up1reportepiufr'),$nbtotal);
 					$array_csv[]= array(get_string('licence','local_up1reportepiufr'),$nb_licence);		
 					$array_csv[]= array(get_string('master','local_up1reportepiufr'),$nb_master);		
 					$array_csv[]= array(get_string('doctorat','local_up1reportepiufr'),$nb_doctorat);		

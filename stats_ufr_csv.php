@@ -7,11 +7,14 @@ require_login();
 
 ini_set('max_execution_time', 600);
 ini_set('memory_limit', '2048M');
+@ini_set('display_errors', '1'); // NOT FOR PRODUCTION SERVERS!
+$CFG->debug = 38911;  // DEBUG_DEVELOPER // NOT FOR PRODUCTION SERVERS!
+$CFG->debugdisplay = true;   // NOT FOR PRODUCTION SERVERS!
 
 /**
  * vérification que l'utilisateur est un administrateur
  */
-if (is_siteadmin()) {
+if (is_siteadmin() || is_userauthorized($USER->id)) {
 	$libelle_annee = '';
 	$annee = isset($_GET['annee']) ? $_GET['annee'] : 0;
 	$typestat = isset($_GET['typestat']) ? $_GET['typestat'] : '';
