@@ -11,7 +11,7 @@ $SELECT = "		SELECT count( distinct U.id ) as nb
 				        JOIN {course_categories} AS CC ON c.category = CC.id
 				        JOIN {user} AS U ON U.id = tra.userid
 				        WHERE tra.roleid = 5
-				        AND (email LIKE '%malix%' or email like '%@etu%') 
+				        AND email LIKE '%malix%' 
 				        AND ( CC.path LIKE ? OR CC.path LIKE ? ))";
 $requete_etab_dedoublonnee = true;
 $count = false;

@@ -40,8 +40,6 @@ $string['nb_contribution_forum_autre'] = 'Nombre de contributions des forums aut
 $string['nb_devoirs_rendus'] = 'Nombre de devoirs rendus (assign submit)';
 $string['nb_enseignants'] = 'Nombre d\'utilisateurs avec rôle enseignant ou associé';
 $string['nb_epis'] = 'Nombre d\'espaces de cours';
-$string['nb_etudiants_EPIarchive_jamais_connectes'] = 'Nombre d\'utilisateurs avec rôle "étudiant EPI archivé" qui ne se sont jamais connectés ';
-$string['nb_etudiants_EPIarchive'] = 'Nombre d\' utilisateurs avec un rôle "étudiant EPI archivé"';
 $string['nb_etudiants_jamais_connectes'] = 'Nombre d\'utilisateurs avec rôle étudiant jamais connectés';
 $string['nb_etudiants'] = 'Nombre d\' utilisateurs avec un rôle étudiant';
 $string['nb_etudiants_cohort'] = 'Nombre d\' utilisateurs issues d\'une synchronisation de cohortes LDAP';
@@ -61,10 +59,6 @@ $string['nb_enseignants_libcol'] = 'Nombre d\'utilisateurs avec rôle enseignant
 $string['nb_epis_libcol'] = 'Nombre d\'espaces de cours';
 $string['nb_etudiants_jamais_connectes_libcol'] = 'Nombre d\'utilisateurs avec rôle étudiant jamais connectés (utilisateurs uniques)';
 $string['nb_etudiants_libcol'] = 'Nombre d\' utilisateurs avec un rôle étudiant (utilisateurs uniques)';
-
-$string['nb_etudiants_EPIarchive_jamais_connectes_libcol'] = 'Nombre d\'utilisateurs avec rôle étudiant EPI archivé  jamais connectés (utilisateurs uniques)';
-$string['nb_etudiants_EPIarchive_libcol'] = 'Nombre d\' utilisateurs avec un rôle étudiant EPI archivé (utilisateurs uniques)';
-
 $string['nb_etudiants_cohort_libcol'] = 'Nombre d\' utilisateurs issues d\'une synchronisation de cohortes LDAP (utilisateurs uniques)';
 $string['nb_forum_annonces_libcol'] = 'Nombre de forums des annonces (news)';
 $string['nb_forum_autres_libcol'] = 'Nombre de forums autre qu\annonces (non news)';

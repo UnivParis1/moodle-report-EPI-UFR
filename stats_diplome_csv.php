@@ -73,7 +73,7 @@ if (is_siteadmin() || is_userauthorized($USER->id)) {
 					} else {
 						$nbtotal = $nb_licence + $nb_master + $nb_doctorat + $nb_autre;
 					}
-					$array_csv[]= array(get_string($typestat,'local_up1reportepiufr'),$nbtotal);
+					$array_csv[]= array(get_string($typestat.'_libcol','local_up1reportepiufr'),$nbtotal);
 					$array_csv[]= array(get_string('licence','local_up1reportepiufr'),$nb_licence);		
 					$array_csv[]= array(get_string('master','local_up1reportepiufr'),$nb_master);		
 					$array_csv[]= array(get_string('doctorat','local_up1reportepiufr'),$nb_doctorat);		

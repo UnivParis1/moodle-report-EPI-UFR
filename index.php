@@ -84,16 +84,6 @@ EOF;
 				'<a href="stats_ufr_csv.php?annee='.$annee.'&typestat=nb_etudiants_jamais_connectes" target="_BLANK"><img src="img/csv.png" width="32"></a>',
 				'<a href="stats_diplome_csv.php?annee='.$annee.'&typestat=nb_etudiants_jamais_connectes" target="_BLANK"><img src="img/csv.png" width="32"></a>'
 			); 
-		$url_stats_epis_users[]  = array(
-				'<a href="stats.php?annee='.$annee.'&typestat=nb_etudiants_EPIarchive" target="_BLANK" target="_BLANK">'.  get_string('nb_etudiants_EPIarchive', 'local_up1reportepiufr').'</a>',
-				'<a href="stats_ufr_csv.php?annee='.$annee.'&typestat=nb_etudiants_EPIarchive" target="_BLANK"><img src="img/csv.png" width="32"></a>',
-				'<a href="stats_diplome_csv.php?annee='.$annee.'&typestat=nb_etudiants_EPIarchive" target="_BLANK"><img src="img/csv.png" width="32"></a>'
-			); 
-		$url_stats_epis_users[]  = array(
-				'<a href="stats.php?annee='.$annee.'&typestat=nb_etudiants_EPIarchive_jamais_connectes" target="_BLANK">'.  get_string('nb_etudiants_EPIarchive_jamais_connectes', 'local_up1reportepiufr').'</a>',
-				'<a href="stats_ufr_csv.php?annee='.$annee.'&typestat=nb_etudiants_EPIarchive_jamais_connectes" target="_BLANK"><img src="img/csv.png" width="32"></a>',
-				'<a href="stats_diplome_csv.php?annee='.$annee.'&typestat=nb_etudiants_EPIarchive_jamais_connectes" target="_BLANK"><img src="img/csv.png" width="32"></a>'
-			); 
 		$url_stats_activity[]  = array(
 				'<a href="stats.php?annee='.$annee.'&typestat=nb_activites_devoir" target="_BLANK">'.  get_string('nb_activites_devoir', 'local_up1reportepiufr').'</a>',
 				'<a href="stats_ufr_csv.php?annee='.$annee.'&typestat=nb_activites_devoir" TARGET="_BLANK"><img src="img/csv.png" width="32"></a>',
