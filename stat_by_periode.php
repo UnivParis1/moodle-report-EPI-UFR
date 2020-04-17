@@ -28,10 +28,12 @@ if (is_userauthorized($USER->id) || is_siteadmin()) {
 		$data[0][0] = 'Nombre d\'ajout de fichier ressource';
 		$data[1][0] = 'Nombre de vues de fichiers ressource';
 		$data[2][0] = 'Nombre de cours créés';
-		$data[3][0] = 'Nombre de forum de discussions créés';
-		$data[4][0] = 'Nombre d\'autre forum de discussions créés';
+		$data[3][0] = 'Nombre de forum des annonces crées';
+		$data[4][0] = 'Nombre de forum créés';
 		$data[5][0] = 'Nombre de devoir créés';
 		$data[6][0] = 'Nombre de devoir rendus';
+		$data[7][0] = 'Nombre de quiz créés';
+		$data[8][0] = 'Nombre de reponse aux quiz';
 		for ($i=0;$i< $nb_periode;$i++) {
 			$periode_debut = $_POST['annee_debut_'.$i] . '-'.
 				$_POST['mois_debut_'.$i] . '-'.
@@ -47,6 +49,8 @@ if (is_userauthorized($USER->id) || is_siteadmin()) {
 			$data[4][$i+1] = nb_other_forum_created($periode_debut,$periode_fin);
 			$data[5][$i+1] = nb_assign_created($periode_debut,$periode_fin);
 			$data[6][$i+1] = nb_assign_submitted($periode_debut,$periode_fin);
+			$data[7][$i+1] = nb_quiz_created($periode_debut,$periode_fin);
+			$data[8][$i+1] = nb_quiz_submitted($periode_debut,$periode_fin);
 
 		}
 		$table2 = new html_table();
@@ -69,6 +73,8 @@ echo "
           ['Nbe forum de discussions créés', ".$data[4][1].",".$data[4][2].",".$data[4][3]."],
           ['Nbe devoir créés', ".$data[5][1].",".$data[5][2].",".$data[5][3]."],
           ['Nbe devoir rendu', ".$data[6][1].",".$data[6][2].",".$data[6][3]."]
+          ['Nbe quiz créés', ".$data[7][1].",".$data[7][2].",".$data[7][3]."]
+          ['Nbe reponse quiz', ".$data[8][1].",".$data[8][2].",".$data[8][3]."]
         ]);
 
 

@@ -568,7 +568,21 @@ function nb_assign_created($periode_debut,$periode_fin) {
 
 function nb_assign_submitted($periode_debut,$periode_fin) {
         global $DB;
-        $select = "select count(id) as nb from mdl_assign_submission where timemodified > UNIX_TIMESTAMP('".$periode_debut."') and timemodified < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $select = "select count(id) as nb from mdl_assign_submission where timecreated > UNIX_TIMESTAMP('".$periode_debut."') and timecreated < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $obj=  $DB->get_record_sql($select);
+         if (!empty($obj->nb))  return $obj->nb;
+         return 0;
+}
+function nb_quiz_created($periode_debut,$periode_fin) {
+        global $DB;
+        $select = "select count(id) as nb from mdl_quiz where timecreated > UNIX_TIMESTAMP('".$periode_debut."') and timecreated < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $obj=  $DB->get_record_sql($select);
+         if (!empty($obj->nb))  return $obj->nb;
+         return 0;
+}
+function nb_quiz_submitted($periode_debut,$periode_fin) {
+        global $DB;
+        $select = "select count(id) as nb from mdl_quiz_attempts where timefinish > UNIX_TIMESTAMP('".$periode_debut."') and timefinish < UNIX_TIMESTAMP('".$periode_fin."') ";
         $obj=  $DB->get_record_sql($select);
          if (!empty($obj->nb))  return $obj->nb;
          return 0;
