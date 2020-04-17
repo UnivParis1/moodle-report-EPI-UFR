@@ -28,6 +28,10 @@ if (is_userauthorized($USER->id) || is_siteadmin()) {
 		$data[0][0] = 'Nombre d\'ajout de fichier ressource';
 		$data[1][0] = 'Nombre de vues de fichiers ressource';
 		$data[2][0] = 'Nombre de cours créés';
+		$data[3][0] = 'Nombre de forum de discussions créés';
+		$data[4][0] = 'Nombre d\'autre forum de discussions créés';
+		$data[5][0] = 'Nombre de devoir créés';
+		$data[6][0] = 'Nombre de devoir rendus';
 		for ($i=0;$i< $nb_periode;$i++) {
 			$periode_debut = $_POST['annee_debut_'.$i] . '-'.
 				$_POST['mois_debut_'.$i] . '-'.
@@ -39,6 +43,10 @@ if (is_userauthorized($USER->id) || is_siteadmin()) {
 			$data[0][$i+1]= nb_ajout_fichier_ressource($periode_debut,$periode_fin);	
 			$data[1][$i+1]= nb_vue_fichier_ressource($periode_debut,$periode_fin);
 			$data[2][$i+1] = nb_course_created($periode_debut,$periode_fin);
+			$data[3][$i+1] = nb_forum_announce_created($periode_debut,$periode_fin);
+			$data[4][$i+1] = nb_other_forum_created($periode_debut,$periode_fin);
+			$data[5][$i+1] = nb_assign_created($periode_debut,$periode_fin);
+			$data[6][$i+1] = nb_assign_submitted($periode_debut,$periode_fin);
 
 		}
 		$table2 = new html_table();
@@ -56,7 +64,11 @@ echo "
           ['$entete[0]', '$entete[1]', '$entete[2]', '$entete[3]'],
           ['Ajout de fichier ressource', ".$data[0][1].",".$data[0][2].",".$data[0][3]."],
           ['Nb vu de fichier ressource', ".$data[1][1].",".$data[1][2].",".$data[1][3]."],
-          ['Nb cours créés', ".$data[2][1].",".$data[2][2].",".$data[2][3]."]
+          ['Nb cours créés', ".$data[2][1].",".$data[2][2].",".$data[2][3]."],
+          ['Nbe forum de discussions créés', ".$data[3][1].",".$data[3][2].",".$data[3][3]."],
+          ['Nbe forum de discussions créés', ".$data[4][1].",".$data[4][2].",".$data[4][3]."],
+          ['Nbe devoir créés', ".$data[5][1].",".$data[5][2].",".$data[5][3]."],
+          ['Nbe devoir rendu', ".$data[6][1].",".$data[6][2].",".$data[6][3]."]
         ]);
 
 

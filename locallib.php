@@ -542,3 +542,34 @@ function nb_course_created($periode_debut,$periode_fin) {
          if (!empty($obj->nb))  return $obj->nb;
          return 0;
 }
+
+function nb_forum_announce_created($periode_debut,$periode_fin) {
+        global $DB;
+        $select = "select count(distinct(post.id)) as nb from mdl_forum_posts post inner join mdl_forum_discussions disc on disc.id=post.discussion inner join mdl_forum forum on forum.id=disc.forum where forum.type='news' and created > UNIX_TIMESTAMP('".$periode_debut."') and created < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $obj=  $DB->get_record_sql($select);
+         if (!empty($obj->nb))  return $obj->nb;
+         return 0;
+}
+function nb_other_forum_created($periode_debut,$periode_fin) {
+        global $DB;
+        $select = "select count(distinct(post.id)) as nb from mdl_forum_posts post inner join mdl_forum_discussions disc on disc.id=post.discussion inner join mdl_forum forum on forum.id=disc.forum where forum.type='general' and created > UNIX_TIMESTAMP('".$periode_debut."') and created < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $obj=  $DB->get_record_sql($select);
+         if (!empty($obj->nb))  return $obj->nb;
+         return 0;
+}
+
+function nb_assign_created($periode_debut,$periode_fin) {
+        global $DB;
+        $select = "select count(id) as nb from mdl_assign where timemodified > UNIX_TIMESTAMP('".$periode_debut."') and timemodified < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $obj=  $DB->get_record_sql($select);
+         if (!empty($obj->nb))  return $obj->nb;
+         return 0;
+}
+
+function nb_assign_submitted($periode_debut,$periode_fin) {
+        global $DB;
+        $select = "select count(id) as nb from mdl_assign_submission where timemodified > UNIX_TIMESTAMP('".$periode_debut."') and timemodified < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $obj=  $DB->get_record_sql($select);
+         if (!empty($obj->nb))  return $obj->nb;
+         return 0;
+}
