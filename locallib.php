@@ -587,3 +587,24 @@ function nb_quiz_submitted($periode_debut,$periode_fin) {
          if (!empty($obj->nb))  return $obj->nb;
          return 0;
 }
+function nb_real_bbb($periode_debut,$periode_fin) {
+        global $DB;
+        $select = "select count(id) as nb from mdl_bigbluebuttonbn_logs bbblog where (select count(distinct(bbblogjoin.id)) from mdl_bigbluebuttonbn_logs bbblogjoin where bbblogjoin.bigbluebuttonbnid = bbblog.id and bbblogjoin.log='join'  )>= 5 and bbblog.log like 'creat%' and bbblog.timecreated > UNIX_TIMESTAMP('".$periode_debut."') and bbblog.timecreated < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $obj=  $DB->get_record_sql($select);
+         if (!empty($obj->nb))  return $obj->nb;
+         return 0;
+}
+function nb_bbb_sessions($periode_debut,$periode_fin) {
+        global $DB;
+        $select = "select count(id) as nb from mdl_bigbluebuttonbn_logs bbb where bbb.log like 'creat%' and meta like '%:true%' and openingtime > UNIX_TIMESTAMP('".$periode_debut."') and openingtime < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $obj=  $DB->get_record_sql($select);
+         if (!empty($obj->nb))  return $obj->nb;
+         return 0;
+}
+function nb_bbb_participants($periode_debut,$periode_fin) {
+        global $DB;
+        $select = "select count(distinct(bbblogjoin.id)) as nb from mdl_bigbluebuttonbn bbb inner join mdl_bigbluebuttonbn_logs bbblogjoin on bbblogjoin.bigbluebuttonbnid = bbb.id where bbblogjoin.log='join' and bbblogjoin.timecreated > UNIX_TIMESTAMP('".$periode_debut."') and bbb.timecreated < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $obj=  $DB->get_record_sql($select);
+         if (!empty($obj->nb))  return $obj->nb;
+         return 0;
+}
