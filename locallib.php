@@ -596,7 +596,7 @@ function nb_real_bbb($periode_debut,$periode_fin) {
 }
 function nb_bbb_sessions($periode_debut,$periode_fin) {
         global $DB;
-        $select = "select count(id) as nb from mdl_bigbluebuttonbn_logs bbb where bbb.log like 'creat%' and meta like '%:true%' and openingtime > UNIX_TIMESTAMP('".$periode_debut."') and openingtime < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $select ="select count(id) as nb from mdl_bigbluebuttonbn_logs bbb where bbb.log like 'creat%' and meta like '%true%' and timecreated > UNIX_TIMESTAMP('".$periode_debut."') and timecreated < UNIX_TIMESTAMP('".$periode_fin."') ";
         $obj=  $DB->get_record_sql($select);
          if (!empty($obj->nb))  return $obj->nb;
          return 0;
