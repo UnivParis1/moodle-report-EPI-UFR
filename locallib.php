@@ -589,7 +589,8 @@ function nb_quiz_submitted($periode_debut,$periode_fin) {
 }
 function nb_real_bbb($periode_debut,$periode_fin) {
         global $DB;
-        $select = "select count(id) as nb from mdl_bigbluebuttonbn_logs bbblog where (select count(distinct(bbblogjoin.id)) from mdl_bigbluebuttonbn_logs bbblogjoin where bbblogjoin.bigbluebuttonbnid = bbblog.id and bbblogjoin.log='join'  )>= 5 and bbblog.log like 'creat%' and bbblog.timecreated > UNIX_TIMESTAMP('".$periode_debut."') and bbblog.timecreated < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $oldSelect = "select count(id) as nb from mdl_bigbluebuttonbn_logs bbblog where (select count(distinct(bbblogjoin.id)) from mdl_bigbluebuttonbn_logs bbblogjoin where bbblogjoin.bigbluebuttonbnid = bbblog.id and bbblogjoin.log='join'  )>= 5 and bbblog.log like 'creat%' and bbblog.timecreated > UNIX_TIMESTAMP('".$periode_debut."') and bbblog.timecreated < UNIX_TIMESTAMP('".$periode_fin."') ";
+      	$select = "select count(id) as nb from mdl_bigbluebuttonbn_logs bbblog where bbblog.log like 'creat%' and bbblog.timecreated > UNIX_TIMESTAMP('".$periode_debut."') and bbblog.timecreated < UNIX_TIMESTAMP('".$periode_fin."') ";
         $obj=  $DB->get_record_sql($select);
          if (!empty($obj->nb))  return $obj->nb;
          return 0;
