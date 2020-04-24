@@ -6,7 +6,7 @@ require_once('locallib.php');
 require_login();
 
 ini_set('max_execution_time', 600);
-ini_set('memory_limit', '2048M');
+ini_set('memory_limit', -1);
 $idcategorie=0;
 $url = new moodle_url('/local/up1reportepiufr/index.php');
 $PAGE->set_url($url);
@@ -34,7 +34,7 @@ if (is_userauthorized($USER->id) || is_siteadmin()) {
 		$data[6][0] = 'Nombre de devoirs rendus';
 		$data[7][0] = 'Nombre de quiz créés';
 		$data[8][0] = 'Nombre de réponses aux quiz';
-		$data[9][0] = 'Nombre de sessions BBB (+5 particpants)';
+		$data[9][0] = 'Nombre de sessions BBB ';
 		$data[10][0] = 'Nombre de sessions BBB enregistrés';
 		$data[11][0] = 'Nombre de particpants aux sessions BBB';
 		for ($i=0;$i< $nb_periode;$i++) {
