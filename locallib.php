@@ -609,3 +609,17 @@ function nb_bbb_participants($periode_debut,$periode_fin) {
          if (!empty($obj->nb))  return $obj->nb;
          return 0;
 }
+function nb_zoom_reunions($periode_debut,$periode_fin) {
+        global $DB;
+        $select = "select count(zoomdetails.id) as nb from mdl_zoom_meeting_details zoomdetails where zoomdetails.start_time > UNIX_TIMESTAMP('".$periode_debut."') and zoomdetails.start_time < UNIX_TIMESTAMP('".$periode_fin."') and zoomdetails.end_time > UNIX_TIMESTAMP('".$periode_debut."') and zoomdetails.end_time < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $obj=  $DB->get_record_sql($select);
+         if (!empty($obj->nb))  return $obj->nb;
+         return 0;
+}
+function nb_zoom_participants($periode_debut,$periode_fin) {
+        global $DB;
+        $select = "select SUM(zoomdetails.participants_count) as nb from mdl_zoom_meeting_details zoomdetails where zoomdetails.start_time > UNIX_TIMESTAMP('".$periode_debut."') and zoomdetails.start_time < UNIX_TIMESTAMP('".$periode_fin."') and zoomdetails.end_time > UNIX_TIMESTAMP('".$periode_debut."') and zoomdetails.end_time < UNIX_TIMESTAMP('".$periode_fin."') ";
+        $obj=  $DB->get_record_sql($select);
+         if (!empty($obj->nb))  return $obj->nb;
+         return 0;
+}

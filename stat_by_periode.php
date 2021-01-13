@@ -34,9 +34,11 @@ if (is_userauthorized($USER->id) || is_siteadmin()) {
 		$data[6][0] = 'Nombre de devoirs rendus';
 		$data[7][0] = 'Nombre de quiz créés';
 		$data[8][0] = 'Nombre de réponses aux quiz';
-		$data[9][0] = 'Nombre de sessions BBB ';
+		$data[9][0] = 'Nombre de sessions BBB';
 		$data[10][0] = 'Nombre de sessions BBB enregistrés';
-		$data[11][0] = 'Nombre de particpants aux sessions BBB';
+		$data[11][0] = 'Nombre de participants aux sessions BBB';
+		$data[12][0] = 'Nombre de réunions Zoom créées';
+		$data[13][0] = 'Nombre de participants aux réunions Zoom';
 		for ($i=0;$i< $nb_periode;$i++) {
 			$periode_debut = $_POST['annee_debut_'.$i] . '-'.
 				$_POST['mois_debut_'.$i] . '-'.
@@ -57,6 +59,8 @@ if (is_userauthorized($USER->id) || is_siteadmin()) {
 			$data[9][$i+1] = nb_real_bbb($periode_debut,$periode_fin);
 			$data[10][$i+1] = nb_bbb_sessions($periode_debut,$periode_fin);
 			$data[11][$i+1] = nb_bbb_participants($periode_debut,$periode_fin);
+			$data[12][$i+1] = nb_zoom_reunions($periode_debut,$periode_fin);
+			$data[13][$i+1] = nb_zoom_participants($periode_debut,$periode_fin);
 
 		}
 		$table2 = new html_table();
@@ -83,7 +87,9 @@ echo "
           ['Nbe réponse quiz', ".$data[8][1].",".$data[8][2].",".$data[8][3]."],
           ['Nombre de sessions BBB (+5 particpants)', ".$data[9][1].",".$data[9][2].",".$data[9][3]."],
           ['Nombre de sessions BBB enregistrés', ".$data[10][1].",".$data[10][2].",".$data[10][3]."],
-          ['Nombre de particpants aux sessions BBB', ".$data[11][1].",".$data[11][2].",".$data[11][3]."]
+          ['Nombre de participants aux sessions BBB', ".$data[11][1].",".$data[11][2].",".$data[11][3]."]
+          ['Nombre de réunions Zoom créées', ".$data[12][1].",".$data[12][2].",".$data[12][3]."]
+          ['Nombre de participants aux réunions Zoom', ".$data[13][1].",".$data[13][2].",".$data[13][3]."]
         ]);
 
 
