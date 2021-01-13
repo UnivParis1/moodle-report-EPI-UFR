@@ -46,6 +46,7 @@ if (is_userauthorized($USER->id) || is_siteadmin()) {
 ';
 	 echo $form; // insertion du formulaire dans la page
 	if (!empty($_POST['formname'])) {
+		$firstYear = 2016;
 		if ($_POST['formname']=='nb_periode') {
 		$nb_periode = $_POST['nb_periode'];
 		$form2 = '
@@ -57,13 +58,12 @@ if (is_userauthorized($USER->id) || is_siteadmin()) {
 			<filedset>
          		<legend>Période '.$i.'</legend>
 			Début&nbsp;de&nbsp;la&nbsp;période&nbsp;:&nbsp;
-année&nbsp;<select name="annee_debut_'.$i.'">
-	<option value="2020">2020</option>
-	<option value="2019">2019</option>
-	<option value="2018">2018</option>
-	<option value="2017">2017</option>
-	<option value="2016">2016</option>
-</select>&nbsp;
+année&nbsp;<select name="annee_debut_'.$i.'">';
+	foreach (range(date('Y'), $firstYear) as $x) {
+	    $form2 .='<option value="'.$x.'">'.$x.'</option>';
+	}
+
+$form2 .='</select>&nbsp;
 mois&nbsp;&nbsp<select name="mois_debut_'.$i.'">
 	<option value="01">01</option>
          <option value="02">02</option>
@@ -114,13 +114,11 @@ jour&nbsp;&nbsp<select name="jour_debut_'.$i.'">
 <br />
 <br />
  Fin&nbsp;de&nbsp;la&nbsp;période&nbsp;:&nbsp;
-année&nbsp;<select name="annee_fin_'.$i.'">
-		<option value="2020">2020</option>
-        <option value="2019">2019</option>
-        <option value="2018">2018</option>
-        <option value="2017">2017</option>
-        <option value="2016">2016</option>
-</select>&nbsp;
+année&nbsp;<select name="annee_fin_'.$i.'">';
+foreach (range(date('Y'), $firstYear) as $x) {
+    $form2 .='<option value="'.$x.'">'.$x.'</option>';
+}
+$form2 .='</select>&nbsp;
 mois&nbsp;&nbsp<select name="mois_fin_'.$i.'">
         <option value="01">01</option>
          <option value="02">02</option>
